@@ -126,36 +126,60 @@ public class TelaCadastroApartamentos extends Application {
     }
 
     // Método para salvar os dados do apartamento
-    private void saveApartamento() {
-        try {
-            // Cria um objeto Apartamento com os dados do formulário
-            Apartamento apartamento = new Apartamento(
-                    numeroField.getText(),
-                    blocoField.getText(),
-                    Double.parseDouble(areaField.getText()),
-                    proprietarioField.getText(),
-                    descricaoField.getText(),
-                    mesCompetenciaField.getText(),
-                    Double.parseDouble(aluguelField.getText()),
-                    Double.parseDouble(garagemField.getText()),
-                    Double.parseDouble(valorCondominioField.getText()),
-                    Double.parseDouble(consumoAguaField.getText()),
-                    Double.parseDouble(valorAguaField.getText()),
-                    Double.parseDouble(consumoGasField.getText()),
-                    Double.parseDouble(valorGasField.getText()),
-                    Double.parseDouble(valorLuzField.getText()),
-                    Double.parseDouble(totalField.getText())
-            );
+private void saveApartamento() {
+    try {
+        // Cria um objeto Apartamento com os dados do formulário
+        Apartamento apartamento = new Apartamento(
+                numeroField.getText(),
+                blocoField.getText(),
+                Double.parseDouble(areaField.getText()),
+                proprietarioField.getText(),
+                descricaoField.getText(),
+                mesCompetenciaField.getText(),
+                Double.parseDouble(aluguelField.getText()),
+                Double.parseDouble(garagemField.getText()),
+                Double.parseDouble(valorCondominioField.getText()),
+                Double.parseDouble(consumoAguaField.getText()),
+                Double.parseDouble(valorAguaField.getText()),
+                Double.parseDouble(consumoGasField.getText()),
+                Double.parseDouble(valorGasField.getText()),
+                Double.parseDouble(valorLuzField.getText()),
+                Double.parseDouble(totalField.getText())
+        );
 
-            // Salva os dados no banco de dados
-            ApartamentoDAO dao = new ApartamentoDAO();
-            dao.cadastrarApartamento(apartamento);
-            System.out.println("Apartamento cadastrado com sucesso!");
-        } catch (Exception e) {
-            // Trata erros durante o cadastro
-            System.err.println("Erro ao cadastrar apartamento: " + e.getMessage());
-        }
+        // Salva os dados no banco de dados
+        ApartamentoDAO dao = new ApartamentoDAO();
+        dao.cadastrarApartamento(apartamento);
+        System.out.println("Apartamento cadastrado com sucesso!");
+
+        // Limpa os campos do formulário
+        clearFields();
+
+    } catch (Exception e) {
+        // Trata erros durante o cadastro
+        System.err.println("Erro ao cadastrar apartamento: " + e.getMessage());
     }
+}
+
+// Método para limpar os campos do formulário
+private void clearFields() {
+    numeroField.clear();
+    blocoField.clear();
+    areaField.clear();
+    proprietarioField.clear();
+    descricaoField.clear();
+    mesCompetenciaField.clear();
+    aluguelField.clear();
+    garagemField.clear();
+    valorCondominioField.clear();
+    consumoAguaField.clear();
+    valorAguaField.clear();
+    consumoGasField.clear();
+    valorGasField.clear();
+    valorLuzField.clear();
+    totalField.clear();
+}
+
 
     @Override
     public void start(Stage primaryStage) {
